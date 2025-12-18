@@ -541,71 +541,44 @@
         </div>
     </footer>
 
-    <!-- Booking Modal -->
+    <!-- Booking Modal (info-only) -->
     <div id="booking-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Réserver une offre</h3>
+                <h3 class="text-2xl font-bold">Contactez-moi pour réserver</h3>
                 <button id="close-modal" class="text-2xl text-gray-500 hover:text-gray-800">&times;</button>
             </div>
-            
-            <form id="booking-form">
-                <input type="hidden" id="selected-offer">
-                
-                <div class="mb-4">
-                    <label class="block text-gray-700 mb-2">Offre sélectionnée</label>
-                    <div id="offer-display" class="p-3 bg-gray-100 rounded-lg font-bold text-red-600"></div>
-                </div>
-                
-                <div class="mb-4">
-                    <label for="first-name" class="block text-gray-700 mb-2">Prénom *</label>
-                    <input type="text" id="first-name" required class="w-full p-3 border border-gray-300 rounded-lg">
-                </div>
-                
-                <div class="mb-4">
-                    <label for="last-name" class="block text-gray-700 mb-2">Nom *</label>
-                    <input type="text" id="last-name" required class="w-full p-3 border border-gray-300 rounded-lg">
-                </div>
-                
-                <div class="mb-4">
-                    <label for="phone" class="block text-gray-700 mb-2">Numéro de téléphone *</label>
-                    <input type="tel" id="phone" required class="w-full p-3 border border-gray-300 rounded-lg">
-                </div>
-                
-                <div class="mb-4">
-                    <label for="place" class="block text-gray-700 mb-2">Lieu de l'événement *</label>
-                    <input type="text" id="place" required class="w-full p-3 border border-gray-300 rounded-lg">
-                </div>
-                
-                <div class="mb-6">
-                    <label for="message" class="block text-gray-700 mb-2">Message supplémentaire</label>
-                    <textarea id="message" rows="3" class="w-full p-3 border border-gray-300 rounded-lg"></textarea>
-                </div>
-                
-                <div class="flex space-x-4">
-                    <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-lg flex-1">
-                        Confirmer la réservation
-                    </button>
-                    <button type="button" id="cancel-booking" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-6 rounded-lg">
-                        Annuler
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- Success Modal -->
-    <div id="success-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 text-center">
-            <div class="text-green-500 text-5xl mb-4">
-                <i class="fas fa-check-circle"></i>
+            <div class="mb-4">
+                <p class="text-gray-700 font-semibold mb-2">Offre sélectionnée</p>
+                <div id="offer-display" class="p-3 bg-gray-100 rounded-lg font-bold text-red-600"></div>
             </div>
-            <h3 class="text-2xl font-bold mb-4">Réservation confirmée !</h3>
-            <p class="text-gray-600 mb-6">Votre réservation a été enregistrée avec succès. Un fichier de confirmation a été téléchargé.</p>
-            <p class="text-gray-600 mb-6">Youcef Studio vous contactera dans les plus brefs délais pour finaliser les détails.</p>
-            <button id="close-success-modal" class="btn-primary text-white font-bold py-3 px-6 rounded-lg">
-                Fermer
-            </button>
+
+            <div class="space-y-4">
+                <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border">
+                    <span class="text-red-600 text-xl"><i class="fas fa-phone"></i></span>
+                    <div>
+                        <p class="text-sm text-gray-600">Téléphone</p>
+                        <a id="contact-phone" href="tel:+213550686208" class="text-lg font-bold text-gray-900">0550 68 62 08</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border">
+                    <span class="text-red-600 text-xl"><i class="fas fa-envelope"></i></span>
+                    <div>
+                        <p class="text-sm text-gray-600">Email</p>
+                        <a id="contact-email" href="mailto:youcef__studio_31@gmail.com" class="text-lg font-bold text-gray-900">youcef__studio_31@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+                <a href="tel:+213550686208" class="btn-primary text-white font-bold py-3 px-4 rounded-lg text-center inline-flex items-center justify-center gap-2">
+                    <i class="fas fa-phone"></i> Appeler
+                </a>
+                <a href="mailto:youcef__studio_31@gmail.com?subject=Reservation%20Youcef%20Studio" class="bg-gray-900 text-white font-bold py-3 px-4 rounded-lg text-center inline-flex items-center justify-center gap-2 hover:bg-gray-800">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
         </div>
     </div>
 
@@ -625,15 +598,10 @@
             });
         });
         
-        // Booking modal functionality
+        // Booking modal functionality (info-only)
         const bookingModal = document.getElementById('booking-modal');
-        const successModal = document.getElementById('success-modal');
         const closeModalBtn = document.getElementById('close-modal');
-        const cancelBookingBtn = document.getElementById('cancel-booking');
-        const closeSuccessModalBtn = document.getElementById('close-success-modal');
         const offerDisplay = document.getElementById('offer-display');
-        const selectedOfferInput = document.getElementById('selected-offer');
-        const bookingForm = document.getElementById('booking-form');
         
         // Get all booking buttons
         const bookButtons = document.querySelectorAll('.book-btn');
@@ -643,119 +611,21 @@
             button.addEventListener('click', () => {
                 const offer = button.getAttribute('data-offer');
                 offerDisplay.textContent = offer;
-                selectedOfferInput.value = offer;
                 bookingModal.classList.remove('hidden');
             });
         });
         
-        // Close modal functions
+        // Close modal function
         const closeBookingModal = () => {
             bookingModal.classList.add('hidden');
         };
-        
-        const closeSuccessModalFunc = () => {
-            successModal.classList.add('hidden');
-        };
-        
+
         closeModalBtn.addEventListener('click', closeBookingModal);
-        cancelBookingBtn.addEventListener('click', closeBookingModal);
-        closeSuccessModalBtn.addEventListener('click', closeSuccessModalFunc);
         
         // Close modal when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === bookingModal) closeBookingModal();
-            if (e.target === successModal) closeSuccessModalFunc();
         });
-        
-        // Handle form submission
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const phone = document.getElementById('phone').value;
-            const place = document.getElementById('place').value;
-            const message = document.getElementById('message').value;
-            const offer = selectedOfferInput.value;
-            
-            // Create booking data object
-            const bookingData = {
-                firstName,
-                lastName,
-                phone,
-                place,
-                offer,
-                message,
-                date: new Date().toLocaleString('fr-FR'),
-                reference: 'CY-' + Date.now().toString().slice(-6)
-            };
-            
-            // Generate and download .txt file
-            generateAndDownloadTxt(bookingData);
-            
-            // Show success modal
-            closeBookingModal();
-            setTimeout(() => {
-                successModal.classList.remove('hidden');
-            }, 300);
-            
-            // Reset form
-            bookingForm.reset();
-        });
-        
-        // Function to generate and download .txt file
-        function generateAndDownloadTxt(data) {
-            // Create text content
-            const textContent = `
-RÉSERVATION - CHÉRIFI YOUSSOUF
-===============================
-
-Référence: ${data.reference}
-Date: ${data.date}
-
-INFORMATIONS CLIENT:
--------------------
-Nom: ${data.lastName}
-Prénom: ${data.firstName}
-Téléphone: ${data.phone}
-Lieu: ${data.place}
-
-OFFRE RÉSERVÉE:
----------------
-${data.offer}
-
-MESSAGE SUPPLÉMENTAIRE:
-----------------------
-${data.message || 'Aucun message supplémentaire'}
-
-CONTACT PHOTOGRAPHE:
--------------------
-Youcef Studio
-Téléphone: +213 0550 68 62 08
-Email: cherifi.youssouf@example.com
-
-Merci pour votre réservation !
-Je vous contacterai dans les plus brefs délais.
-            `;
-            
-            // Create blob and download link
-            const blob = new Blob([textContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `reservation_${data.reference}.txt`;
-            
-            // Trigger download
-            document.body.appendChild(a);
-            a.click();
-            
-            // Clean up
-            setTimeout(() => {
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 100);
-        }
         
         // Handle quick contact form
         const contactForm = document.getElementById('contact-form');

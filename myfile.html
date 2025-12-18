@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youcef Studio | Photographe & Vidéaste Professionnel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #d7263d;
+            --accent: #f59e0b;
+            --muted: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            background: radial-gradient(circle at 20% 20%, rgba(215, 38, 61, 0.08), transparent 32%),
+                        radial-gradient(circle at 80% 0%, rgba(15, 23, 42, 0.08), transparent 28%),
+                        linear-gradient(180deg, #f8fafc 0%, #ffffff 45%, #f8fafc 100%);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-bg {
+            position: relative;
+            background: linear-gradient(120deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.72)),
+                        url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1400&q=80');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(215, 38, 61, 0.35), transparent 45%),
+                        radial-gradient(circle at 70% 20%, rgba(245, 158, 11, 0.22), transparent 40%);
+            mix-blend-mode: screen;
+        }
+        
+        .offer-card {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(6px);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
+            border-color: rgba(215, 38, 61, 0.25);
+        }
+        
+        .modal {
+            transition: all 0.3s ease;
+        }
+
+        .modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .price {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 30px rgba(215, 38, 61, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: #b01f31;
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px rgba(215, 38, 61, 0.25);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-delay-1 { animation-delay: 0.2s; }
+        .animate-delay-2 { animation-delay: 0.4s; }
+        .animate-delay-3 { animation-delay: 0.6s; }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(214, 158, 46, 0.2);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(215, 38, 61, 0.12), rgba(245, 158, 11, 0.15));
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.2s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: conic-gradient(from 120deg, #d7263d, #f59e0b, #d7263d 80%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 20px rgba(215, 38, 61, 0.25);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+        <div class="glass container mx-auto px-4 py-4 mt-3 rounded-2xl flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="brand-logo mr-3">YS</div>
+                <h1 class="text-2xl font-bold">Youcef <span class="text-red-600">Studio</span></h1>
+            </div>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8 text-sm font-semibold">
+                    <li><a href="#accueil" class="nav-link hover:text-red-600">Accueil</a></li>
+                    <li><a href="#offres" class="nav-link hover:text-red-600">Offres</a></li>
+                    <li><a href="#portfolio" class="nav-link hover:text-red-600">Portfolio</a></li>
+                    <li><a href="#contact" class="nav-link hover:text-red-600">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg mt-2 mx-4 rounded-xl">
+            <ul class="flex flex-col p-4 space-y-4">
+                <li><a href="#accueil" class="block py-2 hover:text-red-600 font-medium">Accueil</a></li>
+                <li><a href="#offres" class="block py-2 hover:text-red-600 font-medium">Offres</a></li>
+                <li><a href="#portfolio" class="block py-2 hover:text-red-600 font-medium">Portfolio</a></li>
+                <li><a href="#contact" class="block py-2 hover:text-red-600 font-medium">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-bg text-white pt-36 pb-24 md:pt-44 md:pb-32 relative">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm backdrop-blur mb-6">
+                <i class="fas fa-camera-retro text-amber-300"></i>
+                Shooting | Événement | Pub
+            </div>
+            <h2 class="text-4xl md:text-6xl font-bold mb-4 leading-tight animate-fade-in">Capturer l'essentiel<br class="hidden md:block"/> avec un regard signature</h2>
+            <p class="text-lg md:text-2xl mb-10 max-w-3xl mx-auto text-gray-100 animate-fade-in animate-delay-1">
+                Photographe & vidéaste professionnel pour vos soutenances, événements et campagnes publicitaires en Algérie.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in animate-delay-2">
+                <a href="#offres" class="btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg">Voir les offres</a>
+                <a href="#contact" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-lg transition">
+                    <i class="fas fa-phone"></i> Parler du projet
+                </a>
+            </div>
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto text-sm">
+                <div class="glass rounded-xl p-4 flex items-center gap-4">
+                    <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-red-600 to-amber-500 flex items-center justify-center text-white text-xl shadow">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-amber-300">250+</div>
+                        <div class="text-gray-800 font-semibold">Soutenances et événements</div>
+                        <div class="text-gray-500 text-xs">Couverture complète et encadrée</div>
+                    </div>
+                </div>
+                <div class="glass rounded-xl p-4 flex items-center gap-4">
+                    <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-300 flex items-center justify-center text-white text-xl shadow">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-amber-300">4K </div>
+                        <div class="text-gray-800 font-semibold">Qualité maîtrisée</div>
+                        <div class="text-gray-500 text-xs">Photo & vidéo calibrées</div>
+                    </div>
+                </div>
+                <div class="glass rounded-xl p-4 flex items-center gap-4">
+                    <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center text-white text-xl shadow">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-amber-300">48h</div>
+                        <div class="text-gray-800 font-semibold">Livraison rapide</div>
+                        <div class="text-gray-500 text-xs">Option express disponible</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offres" class="py-16 bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <p class="pill mb-4 inline-flex">Tarifs clairs en DA</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Mes Offres</h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto">
+                    Des forfaits adaptés à vos besoins pour les soutenances, les événements et la publicité.
+                </p>
+            </div>
+            
+            <!-- Offer 1: Soutenance -->
+            <div class="mb-16 animate-fade-in">
+                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
+                    <i class="fas fa-graduation-cap text-red-600 mr-2"></i> Soutenance
+                </h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="offer-card p-8 rounded-xl">
+                        <div class="text-xs uppercase tracking-wide text-gray-500 mb-2">Rapide</div>
+                        <h4 class="text-xl font-bold mb-2">Photo</h4>
+                        <p class="text-gray-600 mb-4">50 photos professionnelles de votre soutenance</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="text-3xl font-bold price">7 000 DA</div>
+                        </div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Photo 50 (7 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card p-8 rounded-xl">
+                        <div class="text-xs uppercase tracking-wide text-gray-500 mb-2">Ciné</div>
+                        <h4 class="text-xl font-bold mb-2">Video 4K</h4>
+                        <p class="text-gray-600 mb-4">Vidéo complète de votre soutenance en qualité 4K</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="text-3xl font-bold price">15 000 DA</div>
+                            <span class="pill bg-white">Montage inclus</span>
+                        </div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Video 4K (15 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card p-8 rounded-xl relative">
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-red-600 to-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow">Populaire</div>
+                        <h4 class="text-xl font-bold mb-2">Pack Complet</h4>
+                        <p class="text-gray-600 mb-4">Photo + Vidéo 4K + 20 photos imprimées</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="text-3xl font-bold price">18 000 DA</div>
+                            <span class="pill bg-white">Photo + Vidéo</span>
+                        </div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Pack Complet (18 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Offer 2: Événement -->
+            <div class="mb-16 animate-fade-in animate-delay-1">
+                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
+                    <i class="fas fa-calendar-alt text-red-600 mr-2"></i> Événement
+                </h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h4 class="text-xl font-bold mb-4">Photo</h4>
+                        <p class="text-gray-600 mb-6">Couverture photo complète de votre événement</p>
+                        <div class="text-3xl font-bold price mb-6">25 000 DA</div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Photo (25 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h4 class="text-xl font-bold mb-4">Video 4K avec montage</h4>
+                        <p class="text-gray-600 mb-6">Vidéo 4K avec montage professionnel</p>
+                        <div class="text-3xl font-bold price mb-6">35 000 DA</div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Video 4K avec montage (35 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h4 class="text-xl font-bold mb-4">Pack Photo+Video</h4>
+                        <p class="text-gray-600 mb-6">Couverture complète photo + vidéo 4K avec montage</p>
+                        <div class="text-3xl font-bold price mb-6">50 000 DA</div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Pack Photo+Video (50 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Offer 3: Publicité -->
+            <div class="animate-fade-in animate-delay-2">
+                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
+                    <i class="fas fa-bullhorn text-red-600 mr-2"></i> Publicité
+                </h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h4 class="text-xl font-bold mb-4">Photo</h4>
+                        <p class="text-gray-600 mb-6">Séance photo professionnelle pour publicité</p>
+                        <div class="text-3xl font-bold price mb-6">7 000 DA</div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Photo (7 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h4 class="text-xl font-bold mb-4">Video 4K avec montage</h4>
+                        <p class="text-gray-600 mb-6">Vidéo publicitaire 4K avec montage créatif</p>
+                        <div class="text-3xl font-bold price mb-6">25 000 DA</div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Video 4K avec montage (25 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h4 class="text-xl font-bold mb-4">Pack Photo+Video</h4>
+                        <p class="text-gray-600 mb-6">Pack complet photo + vidéo pour publicité</p>
+                        <div class="text-3xl font-bold price mb-6">30 000 DA</div>
+                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Pack Photo+Video (30 000 DA)">
+                            Réserver
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Mon Portfolio</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Découvrez quelques-unes de mes réalisations
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="gallery-item bg-white shadow-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" 
+                             alt="Soutenance" class="w-full h-64 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-3 bg-white/90 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">Soutenance</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold">Soutenance universitaire</h4>
+                        <p class="text-gray-600 text-sm">Université d'Alger</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item bg-white shadow-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" 
+                             alt="Événement" class="w-full h-64 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-3 bg-white/90 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">Événement</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold">Mariage traditionnel</h4>
+                        <p class="text-gray-600 text-sm">Alger Centre</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item bg-white shadow-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1462826303086-329426d1aef5?auto=format&fit=crop&w=800&q=80" 
+                             alt="Publicité" class="w-full h-64 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-3 bg-white/90 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">Publicité</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold">Campagne publicitaire</h4>
+                        <p class="text-gray-600 text-sm">Entreprise locale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Contactez-moi</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Pour toute question ou réservation, n'hésitez pas à me contacter
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="glass rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6">Informations de contact</h3>
+                    
+                    <div class="flex items-start mb-6">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-phone text-red-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Téléphone</h4>
+                            <p class="text-gray-600">+213 XXX XX XX XX</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start mb-6">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-envelope text-red-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Email</h4>
+                            <p class="text-gray-600">cherifi.youssouf@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start mb-6">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-map-marker-alt text-red-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Localisation</h4>
+                            <p class="text-gray-600">Alger, Algérie</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full">
+                            <i class="fab fa-facebook-f text-gray-700"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full">
+                            <i class="fab fa-instagram text-gray-700"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full">
+                            <i class="fab fa-whatsapp text-gray-700"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl p-8 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6">Formulaire de contact rapide</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Nom</label>
+                            <input type="text" id="quick-name" placeholder="Votre nom" class="w-full p-3 border border-gray-200 rounded-lg">
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Téléphone</label>
+                            <input type="tel" id="quick-phone" placeholder="Votre numéro de téléphone" class="w-full p-3 border border-gray-200 rounded-lg">
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Message</label>
+                            <textarea id="quick-message" rows="4" placeholder="Votre message" class="w-full p-3 border border-gray-200 rounded-lg"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2026 Youcef Studio. Tous droits réservés.</p>
+            <p class="mt-2 text-gray-400">Photographe & Vidéaste Professionnel - Alger, Algérie</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Réserver une offre</h3>
+                <button id="close-modal" class="text-2xl text-gray-500 hover:text-gray-800">&times;</button>
+            </div>
+            
+            <form id="booking-form">
+                <input type="hidden" id="selected-offer">
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Offre sélectionnée</label>
+                    <div id="offer-display" class="p-3 bg-gray-100 rounded-lg font-bold text-red-600"></div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="first-name" class="block text-gray-700 mb-2">Prénom *</label>
+                    <input type="text" id="first-name" required class="w-full p-3 border border-gray-300 rounded-lg">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="last-name" class="block text-gray-700 mb-2">Nom *</label>
+                    <input type="text" id="last-name" required class="w-full p-3 border border-gray-300 rounded-lg">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700 mb-2">Numéro de téléphone *</label>
+                    <input type="tel" id="phone" required class="w-full p-3 border border-gray-300 rounded-lg">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="place" class="block text-gray-700 mb-2">Lieu de l'événement *</label>
+                    <input type="text" id="place" required class="w-full p-3 border border-gray-300 rounded-lg">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="message" class="block text-gray-700 mb-2">Message supplémentaire</label>
+                    <textarea id="message" rows="3" class="w-full p-3 border border-gray-300 rounded-lg"></textarea>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-lg flex-1">
+                        Confirmer la réservation
+                    </button>
+                    <button type="button" id="cancel-booking" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-6 rounded-lg">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 text-center">
+            <div class="text-green-500 text-5xl mb-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Réservation confirmée !</h3>
+            <p class="text-gray-600 mb-6">Votre réservation a été enregistrée avec succès. Un fichier de confirmation a été téléchargé.</p>
+            <p class="text-gray-600 mb-6">Youcef Studio vous contactera dans les plus brefs délais pour finaliser les détails.</p>
+            <button id="close-success-modal" class="btn-primary text-white font-bold py-3 px-6 rounded-lg">
+                Fermer
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Booking modal functionality
+        const bookingModal = document.getElementById('booking-modal');
+        const successModal = document.getElementById('success-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const cancelBookingBtn = document.getElementById('cancel-booking');
+        const closeSuccessModalBtn = document.getElementById('close-success-modal');
+        const offerDisplay = document.getElementById('offer-display');
+        const selectedOfferInput = document.getElementById('selected-offer');
+        const bookingForm = document.getElementById('booking-form');
+        
+        // Get all booking buttons
+        const bookButtons = document.querySelectorAll('.book-btn');
+        
+        // Open booking modal when clicking a book button
+        bookButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const offer = button.getAttribute('data-offer');
+                offerDisplay.textContent = offer;
+                selectedOfferInput.value = offer;
+                bookingModal.classList.remove('hidden');
+            });
+        });
+        
+        // Close modal functions
+        const closeBookingModal = () => {
+            bookingModal.classList.add('hidden');
+        };
+        
+        const closeSuccessModalFunc = () => {
+            successModal.classList.add('hidden');
+        };
+        
+        closeModalBtn.addEventListener('click', closeBookingModal);
+        cancelBookingBtn.addEventListener('click', closeBookingModal);
+        closeSuccessModalBtn.addEventListener('click', closeSuccessModalFunc);
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === bookingModal) closeBookingModal();
+            if (e.target === successModal) closeSuccessModalFunc();
+        });
+        
+        // Handle form submission
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const phone = document.getElementById('phone').value;
+            const place = document.getElementById('place').value;
+            const message = document.getElementById('message').value;
+            const offer = selectedOfferInput.value;
+            
+            // Create booking data object
+            const bookingData = {
+                firstName,
+                lastName,
+                phone,
+                place,
+                offer,
+                message,
+                date: new Date().toLocaleString('fr-FR'),
+                reference: 'CY-' + Date.now().toString().slice(-6)
+            };
+            
+            // Generate and download .txt file
+            generateAndDownloadTxt(bookingData);
+            
+            // Show success modal
+            closeBookingModal();
+            setTimeout(() => {
+                successModal.classList.remove('hidden');
+            }, 300);
+            
+            // Reset form
+            bookingForm.reset();
+        });
+        
+        // Function to generate and download .txt file
+        function generateAndDownloadTxt(data) {
+            // Create text content
+            const textContent = `
+RÉSERVATION - CHÉRIFI YOUSSOUF
+===============================
+
+Référence: ${data.reference}
+Date: ${data.date}
+
+INFORMATIONS CLIENT:
+-------------------
+Nom: ${data.lastName}
+Prénom: ${data.firstName}
+Téléphone: ${data.phone}
+Lieu: ${data.place}
+
+OFFRE RÉSERVÉE:
+---------------
+${data.offer}
+
+MESSAGE SUPPLÉMENTAIRE:
+----------------------
+${data.message || 'Aucun message supplémentaire'}
+
+CONTACT PHOTOGRAPHE:
+-------------------
+Youcef Studio
+Téléphone: +213 0550 68 62 08
+Email: cherifi.youssouf@example.com
+
+Merci pour votre réservation !
+Je vous contacterai dans les plus brefs délais.
+            `;
+            
+            // Create blob and download link
+            const blob = new Blob([textContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `reservation_${data.reference}.txt`;
+            
+            // Trigger download
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
+        }
+        
+        // Handle quick contact form
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('quick-name').value;
+            const phone = document.getElementById('quick-phone').value;
+            const message = document.getElementById('quick-message').value;
+            
+            if (name && phone) {
+                // Create WhatsApp link (alternative to email)
+                const whatsappMessage = `Bonjour, je m'appelle ${name}. ${message}`.substring(0, 200);
+                const whatsappLink = `https://wa.me/213XXXXXXXXX?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                // Open WhatsApp in new tab
+                window.open(whatsappLink, '_blank');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Show notification
+                alert('Merci pour votre message! Vous serez redirigé vers WhatsApp pour finaliser votre demande.');
+            } else {
+                alert('Veuillez remplir au moins votre nom et numéro de téléphone.');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.offer-card, .gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

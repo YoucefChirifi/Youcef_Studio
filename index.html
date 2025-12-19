@@ -459,7 +459,7 @@
                 Pour toute question ou réservation, n'hésitez pas à me contacter
             </p>
             
-            <div class="grid md:grid-cols-2 gap-12">
+            <div class="max-w-3xl mx-auto">
                 <div class="glass rounded-2xl p-8">
                     <h3 class="text-2xl font-bold mb-6">Informations de contact</h3>
                     
@@ -505,30 +505,6 @@
                         </a>
                     </div>
                 </div>
-                
-                <div class="glass rounded-2xl p-8 shadow-lg">
-                    <h3 class="text-2xl font-bold mb-6">Formulaire de contact rapide</h3>
-                    <form id="contact-form" class="space-y-4">
-                        <div>
-                            <label class="text-sm text-gray-600 block mb-1">Nom</label>
-                            <input type="text" id="quick-name" placeholder="Votre nom" class="w-full p-3 border border-gray-200 rounded-lg">
-                        </div>
-                        
-                        <div>
-                            <label class="text-sm text-gray-600 block mb-1">Téléphone</label>
-                            <input type="tel" id="quick-phone" placeholder="Votre numéro de téléphone" class="w-full p-3 border border-gray-200 rounded-lg">
-                        </div>
-                        
-                        <div>
-                            <label class="text-sm text-gray-600 block mb-1">Message</label>
-                            <textarea id="quick-message" rows="4" placeholder="Votre message" class="w-full p-3 border border-gray-200 rounded-lg"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full">
-                            Envoyer le message
-                        </button>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
@@ -571,13 +547,8 @@
                 </div>
             </div>
 
-            <div class="mt-6 grid grid-cols-2 gap-3">
-                <a href="tel:+213550686208" class="btn-primary text-white font-bold py-3 px-4 rounded-lg text-center inline-flex items-center justify-center gap-2">
-                    <i class="fas fa-phone"></i> Appeler
-                </a>
-                <a href="mailto:youcef__studio_31@gmail.com?subject=Reservation%20Youcef%20Studio" class="bg-gray-900 text-white font-bold py-3 px-4 rounded-lg text-center inline-flex items-center justify-center gap-2 hover:bg-gray-800">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
+            <div class="mt-6 p-4 rounded-lg bg-gray-50 text-center text-gray-700">
+                Contactez-moi directement par téléphone ou email pour finaliser la réservation.
             </div>
         </div>
     </div>
@@ -625,33 +596,6 @@
         // Close modal when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === bookingModal) closeBookingModal();
-        });
-        
-        // Handle quick contact form
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('quick-name').value;
-            const phone = document.getElementById('quick-phone').value;
-            const message = document.getElementById('quick-message').value;
-            
-            if (name && phone) {
-                // Create WhatsApp link (alternative to email)
-                const whatsappMessage = `Bonjour, je m'appelle ${name}. ${message}`.substring(0, 200);
-                const whatsappLink = `https://wa.me/213XXXXXXXXX?text=${encodeURIComponent(whatsappMessage)}`;
-                
-                // Open WhatsApp in new tab
-                window.open(whatsappLink, '_blank');
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Show notification
-                alert('Merci pour votre message! Vous serez redirigé vers WhatsApp pour finaliser votre demande.');
-            } else {
-                alert('Veuillez remplir au moins votre nom et numéro de téléphone.');
-            }
         });
         
         // Smooth scrolling for anchor links

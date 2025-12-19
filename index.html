@@ -105,13 +105,24 @@
             gap: 14px;
         }
 
+        .offer-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 88px;
+        }
+
         .tier-grid {
             display: grid;
             grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, 1fr);
             gap: 12px;
         }
 
         .tier {
+            display: flex;
+            flex-direction: column;
             background: #fff;
             border: 1px solid rgba(15, 23, 42, 0.08);
             border-radius: 12px;
@@ -139,6 +150,10 @@
 
         .tier.highlight .tier-list li {
             color: #e2e8f0;
+        }
+
+        .tier button {
+            margin-top: auto;
         }
 
         .tag {
@@ -394,7 +409,7 @@
                         <div class="tagline">Pitch final • Jury • Livrables rapides</div>
                     </div>
                     <div class="offer-body">
-                        <div class="flex items-start justify-between">
+                        <div class="offer-heading">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Soutenance</h3>
                                 <p class="text-gray-600 text-sm">Photo, vidéo et pack premium pour défendre votre projet.</p>
@@ -449,7 +464,7 @@
                         <div class="tagline">Concerts • Mariages • Galas</div>
                     </div>
                     <div class="offer-body">
-                        <div class="flex items-start justify-between">
+                        <div class="offer-heading">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Événement</h3>
                                 <p class="text-gray-600 text-sm">Couverture immersive pour vos moments forts.</p>
@@ -504,7 +519,7 @@
                         <div class="tagline">Produits • Marque • Digital</div>
                     </div>
                     <div class="offer-body">
-                        <div class="flex items-start justify-between">
+                        <div class="offer-heading">
                             <div>
                                 <h3 class="text-2xl font-bold text-gray-900">Publicité</h3>
                                 <p class="text-gray-600 text-sm">Assets visuels percutants pour vos campagnes.</p>

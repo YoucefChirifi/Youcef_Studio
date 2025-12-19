@@ -278,122 +278,36 @@
                 <p class="pill mb-4 inline-flex">Tarifs clairs en DA</p>
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Mes Offres</h2>
                 <p class="text-center text-gray-600 max-w-2xl mx-auto">
-                    Des forfaits adaptés à vos besoins pour les soutenances, les événements et la publicité.
+                    Une carte unique qui rassemble toutes les offres. Glissez entre les catégories et réservez en un clic.
                 </p>
             </div>
-            
-            <!-- Offer 1: Soutenance -->
-            <div class="mb-16 animate-fade-in">
-                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
-                    <i class="fas fa-graduation-cap text-red-600 mr-2"></i> Soutenance
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="offer-card p-8 rounded-xl">
-                        <div class="text-xs uppercase tracking-wide text-gray-500 mb-2">Rapide</div>
-                        <h4 class="text-xl font-bold mb-2">Photo</h4>
-                        <p class="text-gray-600 mb-4">50 photos professionnelles de votre soutenance</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="text-3xl font-bold price">7 000 DA</div>
+
+            <div class="max-w-5xl mx-auto animate-fade-in">
+                <div class="glass rounded-3xl p-8 md:p-10 shadow-xl border border-gray-100">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="md:w-1/3 space-y-6">
+                            <div class="pill inline-flex">Photo & Vidéo</div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-900 leading-tight">Choisissez votre univers</h3>
+                                <p class="text-gray-600 mt-2">Soutenance, événement ou publicité : basculez en douceur et découvrez chaque pack.</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-2xl p-4 flex items-center gap-3">
+                                <span class="h-12 w-12 rounded-xl bg-gradient-to-br from-red-600 to-amber-500 text-white flex items-center justify-center text-xl shadow-lg"><i class="fas fa-bolt"></i></span>
+                                <div>
+                                    <p class="text-sm text-gray-500">Réponse rapide</p>
+                                    <p class="font-semibold text-gray-800">Confirmation en moins de 24h</p>
+                                </div>
+                            </div>
+                            <div class="text-sm text-gray-500 leading-relaxed">
+                                Packs calibrés, montage inclus sur demande, livraison rapide et accompagnement personnalisé pour chaque projet.
+                            </div>
                         </div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Photo 50 (7 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card p-8 rounded-xl">
-                        <div class="text-xs uppercase tracking-wide text-gray-500 mb-2">Ciné</div>
-                        <h4 class="text-xl font-bold mb-2">Video 4K</h4>
-                        <p class="text-gray-600 mb-4">Vidéo complète de votre soutenance en qualité 4K</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="text-3xl font-bold price">15 000 DA</div>
-                            <span class="pill bg-white">Montage inclus</span>
+
+                        <div class="md:w-2/3 space-y-5">
+                            <div id="offer-tabs" class="grid grid-cols-3 gap-3"></div>
+                            <div id="offer-plans" class="grid md:grid-cols-2 gap-4"></div>
+                            <div id="offer-note" class="bg-gray-50 border border-dashed border-gray-200 rounded-xl p-4 text-gray-700 text-sm"></div>
                         </div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Video 4K (15 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card p-8 rounded-xl relative">
-                        <div class="absolute top-4 right-4 bg-gradient-to-r from-red-600 to-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow">Populaire</div>
-                        <h4 class="text-xl font-bold mb-2">Pack Complet</h4>
-                        <p class="text-gray-600 mb-4">Photo + Vidéo 4K + 20 photos imprimées</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="text-3xl font-bold price">18 000 DA</div>
-                            <span class="pill bg-white">Photo + Vidéo</span>
-                        </div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Pack Complet (18 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Offer 2: Événement -->
-            <div class="mb-16 animate-fade-in animate-delay-1">
-                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
-                    <i class="fas fa-calendar-alt text-red-600 mr-2"></i> Événement
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Photo</h4>
-                        <p class="text-gray-600 mb-6">Couverture photo complète de votre événement</p>
-                        <div class="text-3xl font-bold price mb-6">25 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Photo (25 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Video 4K avec montage</h4>
-                        <p class="text-gray-600 mb-6">Vidéo 4K avec montage professionnel</p>
-                        <div class="text-3xl font-bold price mb-6">35 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Video 4K avec montage (35 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Pack Photo+Video</h4>
-                        <p class="text-gray-600 mb-6">Couverture complète photo + vidéo 4K avec montage</p>
-                        <div class="text-3xl font-bold price mb-6">50 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Pack Photo+Video (50 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Offer 3: Publicité -->
-            <div class="animate-fade-in animate-delay-2">
-                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
-                    <i class="fas fa-bullhorn text-red-600 mr-2"></i> Publicité
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Photo</h4>
-                        <p class="text-gray-600 mb-6">Séance photo professionnelle pour publicité</p>
-                        <div class="text-3xl font-bold price mb-6">7 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Photo (7 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Video 4K avec montage</h4>
-                        <p class="text-gray-600 mb-6">Vidéo publicitaire 4K avec montage créatif</p>
-                        <div class="text-3xl font-bold price mb-6">25 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Video 4K avec montage (25 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Pack Photo+Video</h4>
-                        <p class="text-gray-600 mb-6">Pack complet photo + vidéo pour publicité</p>
-                        <div class="text-3xl font-bold price mb-6">30 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Pack Photo+Video (30 000 DA)">
-                            Réserver
-                        </button>
                     </div>
                 </div>
             </div>
@@ -573,19 +487,169 @@
         const bookingModal = document.getElementById('booking-modal');
         const closeModalBtn = document.getElementById('close-modal');
         const offerDisplay = document.getElementById('offer-display');
-        
-        // Get all booking buttons
-        const bookButtons = document.querySelectorAll('.book-btn');
-        
-        // Open booking modal when clicking a book button
-        bookButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const offer = button.getAttribute('data-offer');
-                offerDisplay.textContent = offer;
-                bookingModal.classList.remove('hidden');
+
+        const offersData = [
+            {
+                id: 'soutenance',
+                label: 'Soutenance',
+                icon: 'fa-graduation-cap',
+                accent: 'text-red-600',
+                note: 'Photo, vidéo 4K et pack complet pour vos soutenances universitaires.',
+                plans: [
+                    {
+                        name: 'Photo',
+                        subtitle: '50 photos pro',
+                        description: '50 photos professionnelles de votre soutenance',
+                        price: '7 000 DA',
+                        pill: 'Rapide',
+                        tag: '50 photos',
+                    },
+                    {
+                        name: 'Video 4K',
+                        subtitle: 'Montage inclus',
+                        description: 'Vidéo complète en 4K avec montage',
+                        price: '15 000 DA',
+                        pill: 'Ciné',
+                        tag: 'Montage inclus',
+                    },
+                    {
+                        name: 'Pack Complet',
+                        subtitle: 'Photo + Vidéo + prints',
+                        description: 'Photo + vidéo 4K + 20 photos imprimées',
+                        price: '18 000 DA',
+                        pill: 'Populaire',
+                        tag: 'Photo + Vidéo',
+                        highlight: true,
+                    },
+                ],
+            },
+            {
+                id: 'evenement',
+                label: 'Événement',
+                icon: 'fa-calendar-alt',
+                accent: 'text-amber-600',
+                note: 'Couverture complète pour mariages, conférences et soirées.',
+                plans: [
+                    {
+                        name: 'Photo',
+                        subtitle: 'Reportage photo',
+                        description: 'Couverture photo complète de votre événement',
+                        price: '25 000 DA',
+                        pill: 'Reportage',
+                    },
+                    {
+                        name: 'Video 4K',
+                        subtitle: 'Avec montage',
+                        description: 'Vidéo 4K avec montage professionnel',
+                        price: '35 000 DA',
+                        pill: 'Ciné',
+                    },
+                    {
+                        name: 'Pack Photo+Video',
+                        subtitle: 'Full coverage',
+                        description: 'Photo + vidéo 4K avec montage',
+                        price: '50 000 DA',
+                        pill: 'Complet',
+                        highlight: true,
+                    },
+                ],
+            },
+            {
+                id: 'publicite',
+                label: 'Publicité',
+                icon: 'fa-bullhorn',
+                accent: 'text-emerald-600',
+                note: 'Contenus calibrés pour vos campagnes et vos produits.',
+                plans: [
+                    {
+                        name: 'Photo',
+                        subtitle: 'Studio / extérieur',
+                        description: 'Séance photo professionnelle pour publicité',
+                        price: '7 000 DA',
+                        pill: 'Créa',
+                    },
+                    {
+                        name: 'Video 4K',
+                        subtitle: 'Montage créatif',
+                        description: 'Vidéo publicitaire 4K avec montage',
+                        price: '25 000 DA',
+                        pill: 'Story',
+                    },
+                    {
+                        name: 'Pack Photo+Video',
+                        subtitle: 'Combo campagne',
+                        description: 'Pack complet photo + vidéo publicitaire',
+                        price: '30 000 DA',
+                        pill: 'Impact',
+                        highlight: true,
+                    },
+                ],
+            },
+        ];
+
+        const tabsContainer = document.getElementById('offer-tabs');
+        const plansContainer = document.getElementById('offer-plans');
+        const noteContainer = document.getElementById('offer-note');
+        let activeOffer = offersData[0].id;
+
+        const attachBookingButtons = () => {
+            plansContainer.querySelectorAll('.book-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const offer = button.getAttribute('data-offer');
+                    offerDisplay.textContent = offer;
+                    bookingModal.classList.remove('hidden');
+                });
             });
+        };
+
+        const renderTabs = () => {
+            tabsContainer.innerHTML = offersData.map(offer => `
+                <button data-offer="${offer.id}" class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border transition ${offer.id === activeOffer ? 'bg-red-600 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-50'}">
+                    <i class="fas ${offer.icon}"></i>
+                    <span class="font-semibold text-sm">${offer.label}</span>
+                </button>
+            `).join('');
+        };
+
+        const renderPlans = () => {
+            const current = offersData.find(o => o.id === activeOffer);
+            if (!current) return;
+
+            noteContainer.textContent = current.note;
+
+            plansContainer.innerHTML = current.plans.map(plan => `
+                <div class="offer-card p-6 rounded-xl border border-gray-100 ${plan.highlight ? 'ring-2 ring-red-100 shadow-lg' : ''}">
+                    <div class="flex items-start justify-between mb-3">
+                        <div>
+                            <div class="text-xs uppercase tracking-wide text-gray-500">${plan.pill || ''}</div>
+                            <h4 class="text-xl font-bold">${plan.name}</h4>
+                            <p class="text-gray-600 text-sm mt-1">${plan.description}</p>
+                        </div>
+                        ${plan.subtitle ? `<span class="pill bg-white">${plan.subtitle}</span>` : ''}
+                    </div>
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="text-3xl font-bold price">${plan.price}</div>
+                    </div>
+                    <button class="btn-primary text-white font-bold py-3 px-4 rounded-lg w-full book-btn" data-offer="${current.label} - ${plan.name} (${plan.price})">
+                        Réserver
+                    </button>
+                </div>
+            `).join('');
+
+            attachBookingButtons();
+        };
+
+        renderTabs();
+        renderPlans();
+
+        tabsContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-offer]');
+            if (!btn) return;
+            activeOffer = btn.getAttribute('data-offer');
+            renderTabs();
+            renderPlans();
         });
-        
+
         // Close modal function
         const closeBookingModal = () => {
             bookingModal.classList.add('hidden');

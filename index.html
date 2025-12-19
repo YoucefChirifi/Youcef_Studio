@@ -54,6 +54,110 @@
             backdrop-filter: blur(6px);
         }
 
+        .offer-slab {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 620px;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.96));
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 18px;
+            box-shadow: 0 16px 50px rgba(15, 23, 42, 0.12);
+        }
+
+        .offer-visual {
+            position: relative;
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .offer-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0.35));
+        }
+
+        .offer-visual .badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 1;
+        }
+
+        .offer-visual .tagline {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            z-index: 1;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .offer-body {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .tier {
+            background: #fff;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+        }
+
+        .tier.highlight {
+            background: linear-gradient(135deg, #0f172a, #1f2937);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .tier .price {
+            font-size: 1.8rem;
+        }
+
+        .tier-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .tier.highlight .tier-list li {
+            color: #e2e8f0;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(215, 38, 61, 0.12);
+            color: #b01f31;
+            font-weight: 700;
+            font-size: 0.78rem;
+        }
+
+        .tag.dark {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
         .offer-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
@@ -282,120 +386,171 @@
                 </p>
             </div>
             
-            <!-- Offer 1: Soutenance -->
-            <div class="mb-16 animate-fade-in">
-                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
-                    <i class="fas fa-graduation-cap text-red-600 mr-2"></i> Soutenance
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="offer-card p-8 rounded-xl">
-                        <div class="text-xs uppercase tracking-wide text-gray-500 mb-2">Rapide</div>
-                        <h4 class="text-xl font-bold mb-2">Photo</h4>
-                        <p class="text-gray-600 mb-4">50 photos professionnelles de votre soutenance</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="text-3xl font-bold price">7 000 DA</div>
+            <div class="grid gap-10 md:grid-cols-3">
+                <!-- Soutenance -->
+                <article class="offer-slab animate-fade-in">
+                    <div class="offer-visual" style="background-image: url('https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80');">
+                        <span class="badge pill bg-white/90 text-gray-900 shadow">Soutenance</span>
+                        <div class="tagline">Pitch final • Jury • Livrables rapides</div>
+                    </div>
+                    <div class="offer-body">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Soutenance</h3>
+                                <p class="text-gray-600 text-sm">Photo, vidéo et pack premium pour défendre votre projet.</p>
+                            </div>
+                            <span class="tag"><i class="fa-solid fa-flag-checkered"></i> Série Pro</span>
                         </div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Photo 50 (7 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card p-8 rounded-xl">
-                        <div class="text-xs uppercase tracking-wide text-gray-500 mb-2">Ciné</div>
-                        <h4 class="text-xl font-bold mb-2">Video 4K</h4>
-                        <p class="text-gray-600 mb-4">Vidéo complète de votre soutenance en qualité 4K</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="text-3xl font-bold price">15 000 DA</div>
-                            <span class="pill bg-white">Montage inclus</span>
+                        <div class="tier-grid">
+                            <div class="tier">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg">Photo</div>
+                                    <span class="price text-red-600">7 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>50 photos retouchées HD</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Portraits individuels + jury</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Transfert dans les 48h</span></li>
+                                </ul>
+                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Photo 50 (7 000 DA)">Réserver</button>
+                            </div>
+                            <div class="tier">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg">Video 4K</div>
+                                    <span class="price text-red-600">15 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Capture multi-angles</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Montage clean + titres</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Export 4K + lien privé</span></li>
+                                </ul>
+                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Video 4K (15 000 DA)">Réserver</button>
+                            </div>
+                            <div class="tier highlight">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-star text-amber-400"></i>Pack complet</div>
+                                    <span class="price">18 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Photo + Vidéo 4K</span></li>
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>20 tirages premium</span></li>
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Livraison + teaser court</span></li>
+                                </ul>
+                                <button class="bg-white text-gray-900 font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Pack Complet (18 000 DA)">Réserver</button>
+                            </div>
                         </div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Video 4K (15 000 DA)">
-                            Réserver
-                        </button>
                     </div>
-                    
-                    <div class="offer-card p-8 rounded-xl relative">
-                        <div class="absolute top-4 right-4 bg-gradient-to-r from-red-600 to-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow">Populaire</div>
-                        <h4 class="text-xl font-bold mb-2">Pack Complet</h4>
-                        <p class="text-gray-600 mb-4">Photo + Vidéo 4K + 20 photos imprimées</p>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="text-3xl font-bold price">18 000 DA</div>
-                            <span class="pill bg-white">Photo + Vidéo</span>
+                </article>
+
+                <!-- Événement -->
+                <article class="offer-slab animate-fade-in animate-delay-1">
+                    <div class="offer-visual" style="background-image: url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80');">
+                        <span class="badge pill bg-white/90 text-gray-900 shadow">Événement</span>
+                        <div class="tagline">Concerts • Mariages • Galas</div>
+                    </div>
+                    <div class="offer-body">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Événement</h3>
+                                <p class="text-gray-600 text-sm">Couverture immersive pour vos moments forts.</p>
+                            </div>
+                            <span class="tag"><i class="fa-solid fa-bolt"></i> Live</span>
                         </div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Pack Complet (18 000 DA)">
-                            Réserver
-                        </button>
+                        <div class="tier-grid">
+                            <div class="tier">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg">Photo</div>
+                                    <span class="price text-red-600">25 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Reportage complet du jour J</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Galerie en ligne sécurisée</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Livraison sous 5 jours</span></li>
+                                </ul>
+                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Photo (25 000 DA)">Réserver</button>
+                            </div>
+                            <div class="tier">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg">Video 4K</div>
+                                    <span class="price text-red-600">35 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Stabilisation et audio clair</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Montage storytelling</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Version courte réseaux sociaux</span></li>
+                                </ul>
+                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Video 4K avec montage (35 000 DA)">Réserver</button>
+                            </div>
+                            <div class="tier highlight">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-crown text-amber-400"></i>Pack Photo+Video</div>
+                                    <span class="price">50 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Équipe photo + vidéo dédiée</span></li>
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Montage long + highlights</span></li>
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Remise sur impressions</span></li>
+                                </ul>
+                                <button class="bg-white text-gray-900 font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Pack Photo+Video (50 000 DA)">Réserver</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Offer 2: Événement -->
-            <div class="mb-16 animate-fade-in animate-delay-1">
-                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
-                    <i class="fas fa-calendar-alt text-red-600 mr-2"></i> Événement
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Photo</h4>
-                        <p class="text-gray-600 mb-6">Couverture photo complète de votre événement</p>
-                        <div class="text-3xl font-bold price mb-6">25 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Photo (25 000 DA)">
-                            Réserver
-                        </button>
+                </article>
+
+                <!-- Publicité -->
+                <article class="offer-slab animate-fade-in animate-delay-2">
+                    <div class="offer-visual" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80');">
+                        <span class="badge pill bg-white/90 text-gray-900 shadow">Publicité</span>
+                        <div class="tagline">Produits • Marque • Digital</div>
                     </div>
-                    
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Video 4K avec montage</h4>
-                        <p class="text-gray-600 mb-6">Vidéo 4K avec montage professionnel</p>
-                        <div class="text-3xl font-bold price mb-6">35 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Video 4K avec montage (35 000 DA)">
-                            Réserver
-                        </button>
+                    <div class="offer-body">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Publicité</h3>
+                                <p class="text-gray-600 text-sm">Assets visuels percutants pour vos campagnes.</p>
+                            </div>
+                            <span class="tag"><i class="fa-solid fa-bullhorn"></i> Impact</span>
+                        </div>
+                        <div class="tier-grid">
+                            <div class="tier">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg">Photo</div>
+                                    <span class="price text-red-600">7 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Packshot + ambiance</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Retouches colorimétriques</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Livrables web & print</span></li>
+                                </ul>
+                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Photo (7 000 DA)">Réserver</button>
+                            </div>
+                            <div class="tier">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg">Video 4K</div>
+                                    <span class="price text-red-600">25 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Storyboard + tournage</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Motion titles & sound design</span></li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Formats courts réseaux</span></li>
+                                </ul>
+                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Video 4K avec montage (25 000 DA)">Réserver</button>
+                            </div>
+                            <div class="tier highlight">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-gem text-amber-400"></i>Pack Photo+Video</div>
+                                    <span class="price">30 000 DA</span>
+                                </div>
+                                <ul class="tier-list space-y-1 mb-4">
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Concept + DA unifiée</span></li>
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Photo + vidéo synchronisées</span></li>
+                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Kits prêts pour ads</span></li>
+                                </ul>
+                                <button class="bg-white text-gray-900 font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Pack Photo+Video (30 000 DA)">Réserver</button>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Pack Photo+Video</h4>
-                        <p class="text-gray-600 mb-6">Couverture complète photo + vidéo 4K avec montage</p>
-                        <div class="text-3xl font-bold price mb-6">50 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Pack Photo+Video (50 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Offer 3: Publicité -->
-            <div class="animate-fade-in animate-delay-2">
-                <h3 class="text-2xl font-bold text-center mb-10 text-gray-800">
-                    <i class="fas fa-bullhorn text-red-600 mr-2"></i> Publicité
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Photo</h4>
-                        <p class="text-gray-600 mb-6">Séance photo professionnelle pour publicité</p>
-                        <div class="text-3xl font-bold price mb-6">7 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Photo (7 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Video 4K avec montage</h4>
-                        <p class="text-gray-600 mb-6">Vidéo publicitaire 4K avec montage créatif</p>
-                        <div class="text-3xl font-bold price mb-6">25 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Video 4K avec montage (25 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                    
-                    <div class="offer-card bg-gray-50 p-8 rounded-xl border border-gray-200">
-                        <h4 class="text-xl font-bold mb-4">Pack Photo+Video</h4>
-                        <p class="text-gray-600 mb-6">Pack complet photo + vidéo pour publicité</p>
-                        <div class="text-3xl font-bold price mb-6">30 000 DA</div>
-                        <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Pack Photo+Video (30 000 DA)">
-                            Réserver
-                        </button>
-                    </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -631,7 +786,7 @@
         }, observerOptions);
         
         // Observe elements for animation
-        document.querySelectorAll('.offer-card, .gallery-item').forEach(el => {
+        document.querySelectorAll('.offer-slab, .gallery-item').forEach(el => {
             observer.observe(el);
         });
     </script>

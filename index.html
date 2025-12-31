@@ -4,564 +4,1404 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youcef Studio | Photographe & Vidéaste Professionnel</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%' stop-color='%23d7263d'/%3E%3Cstop offset='100%' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='50%' y='53%' font-family='Montserrat, Arial, sans-serif' font-size='28' font-weight='800' fill='%23fff' text-anchor='middle' dominant-baseline='middle'%3EYS%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f0f0f',
+                        secondary: '#d7263d',
+                        accent: '#f59e0b',
+                        cream: '#faf7f2',
+                        charcoal: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         :root {
-            --primary: #0f172a;
+            --primary: #0f0f0f;
             --secondary: #d7263d;
             --accent: #f59e0b;
-            --muted: #e2e8f0;
+            --cream: #faf7f2;
+            --charcoal: #1a1a1a;
+        }
+        
+        * {
+            scroll-behavior: smooth;
         }
         
         body {
             font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-            background: radial-gradient(circle at 20% 20%, rgba(215, 38, 61, 0.08), transparent 32%),
-                        radial-gradient(circle at 80% 0%, rgba(15, 23, 42, 0.08), transparent 28%),
-                        linear-gradient(180deg, #f8fafc 0%, #ffffff 45%, #f8fafc 100%);
+            background: var(--cream);
+            overflow-x: hidden;
         }
         
-        h1, h2, h3 {
+        h1, h2, h3, .font-display {
             font-family: 'Playfair Display', serif;
         }
         
-        .hero-bg {
-            position: relative;
-            background: linear-gradient(120deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.72)),
-                        url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1400&q=80');
-            background-size: cover;
-            background-position: center;
+        .font-modern {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--secondary), var(--accent));
+            border-radius: 4px;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
             overflow: hidden;
         }
-        .hero-bg::after {
+        
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(215, 38, 61, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 60%, rgba(215, 38, 61, 0.04) 0%, transparent 40%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+        
+        @keyframes bgMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(2%, 2%) rotate(1deg); }
+            50% { transform: translate(-1%, 3%) rotate(-1deg); }
+            75% { transform: translate(3%, -2%) rotate(0.5deg); }
+        }
+
+        /* Floating Shapes */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            filter: blur(1px);
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(215, 38, 61, 0.15), rgba(245, 158, 11, 0.1));
+            top: 10%;
+            right: -100px;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(215, 38, 61, 0.08));
+            bottom: 20%;
+            left: -50px;
+            animation-delay: -5s;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, rgba(215, 38, 61, 0.1), rgba(245, 158, 11, 0.15));
+            top: 50%;
+            right: 10%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-20px) rotate(5deg) scale(1.02); }
+            50% { transform: translateY(10px) rotate(-3deg) scale(0.98); }
+            75% { transform: translateY(-15px) rotate(2deg) scale(1.01); }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        
+        .hero-bg-image::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(215, 38, 61, 0.35), transparent 45%),
-                        radial-gradient(circle at 70% 20%, rgba(245, 158, 11, 0.22), transparent 40%);
-            mix-blend-mode: screen;
-        }
-        
-        .offer-card {
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 1px solid rgba(15, 23, 42, 0.06);
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(6px);
-        }
-
-        .offer-slab {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-height: 620px;
-            overflow: hidden;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.96));
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            border-radius: 18px;
-            box-shadow: 0 16px 50px rgba(15, 23, 42, 0.12);
-        }
-
-        .offer-visual {
-            position: relative;
-            height: 240px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .offer-visual::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0.35));
-        }
-
-        .offer-visual .badge {
-            position: absolute;
-            top: 16px;
-            left: 16px;
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.92) 0%, rgba(26, 26, 26, 0.85) 50%, rgba(15, 15, 15, 0.9) 100%);
             z-index: 1;
         }
+        
+        .hero-bg-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            animation: heroZoom 30s ease-in-out infinite alternate;
+        }
+        
+        @keyframes heroZoom {
+            0% { transform: scale(1.1) translateX(0); }
+            100% { transform: scale(1.15) translateX(-2%); }
+        }
 
-        .offer-visual .tagline {
+        /* Gradient Orbs in Hero */
+        .hero-orb {
             position: absolute;
-            bottom: 16px;
-            left: 16px;
+            border-radius: 50%;
+            filter: blur(80px);
             z-index: 1;
-            color: #fff;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .offer-body {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .offer-heading {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 12px;
-            min-height: 88px;
-        }
-
-        .tier-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        .tier {
-            display: flex;
-            flex-direction: column;
-            background: #fff;
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
-        }
-
-        .tier.highlight {
-            background: linear-gradient(135deg, #0f172a, #1f2937);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.18);
-        }
-
-        .tier .price {
-            font-size: 1.8rem;
-        }
-
-        .tier-list li {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #475569;
-            font-size: 0.95rem;
-        }
-
-        .tier.highlight .tier-list li {
-            color: #e2e8f0;
-        }
-
-        .tier button {
-            margin-top: auto;
-        }
-
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: rgba(215, 38, 61, 0.12);
-            color: #b01f31;
-            font-weight: 700;
-            font-size: 0.78rem;
-        }
-
-        .tag.dark {
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
-        }
-
-        .offer-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
-            border-color: rgba(215, 38, 61, 0.25);
+            animation: orbPulse 8s ease-in-out infinite;
         }
         
-        .modal {
-            transition: all 0.3s ease;
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(215, 38, 61, 0.4) 0%, transparent 70%);
+            top: -20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%);
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -4s;
+        }
+        
+        @keyframes orbPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
         }
 
-        .modal.hidden {
-            opacity: 0;
-            pointer-events: none;
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .price {
-            color: var(--secondary);
-            font-weight: 600;
-        }
-        
-        .btn-primary {
-            background-color: var(--secondary);
-            transition: all 0.25s ease;
-            box-shadow: 0 10px 30px rgba(215, 38, 61, 0.25);
+        .glass-nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
         }
 
-        .btn-primary:hover {
-            background-color: #b01f31;
-            transform: translateY(-2px);
-            box-shadow: 0 16px 36px rgba(215, 38, 61, 0.25);
-        }
-        
-        .section-title {
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-        
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 8px;
-        }
-        
-        .gallery-item img {
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-delay-1 { animation-delay: 0.2s; }
-        .animate-delay-2 { animation-delay: 0.4s; }
-        .animate-delay-3 { animation-delay: 0.6s; }
-        
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(214, 158, 46, 0.2);
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(15, 23, 42, 0.06);
-            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-        }
-
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(215, 38, 61, 0.12), rgba(245, 158, 11, 0.15));
-            color: #0f172a;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
+        /* Nav Link Animations */
         .nav-link {
             position: relative;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
-        .nav-link::after {
+        
+        .nav-link::before {
             content: '';
             position: absolute;
+            bottom: -4px;
             left: 0;
-            bottom: -6px;
             width: 0;
             height: 2px;
-            background: var(--secondary);
-            transition: width 0.2s ease;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .nav-link:hover::after {
+        
+        .nav-link:hover::before {
             width: 100%;
         }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
 
+        /* Brand Logo */
         .brand-logo {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: conic-gradient(from 120deg, #d7263d, #f59e0b, #d7263d 80%);
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             color: #fff;
             font-weight: 800;
+            font-size: 1.1rem;
             letter-spacing: 0.5px;
-            box-shadow: 0 10px 20px rgba(215, 38, 61, 0.25);
+            box-shadow: 0 8px 24px rgba(215, 38, 61, 0.35);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .brand-logo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .brand-logo:hover {
+            transform: scale(1.05) rotate(-3deg);
+            box-shadow: 0 12px 32px rgba(215, 38, 61, 0.4);
+        }
+        
+        .brand-logo:hover::before {
+            opacity: 1;
+        }
+        
+        .brand-logo span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Content Animations */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+        
+        .hero-badge i {
+            color: var(--accent);
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .hero-title {
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+        
+        .hero-subtitle {
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+        
+        .hero-buttons {
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+        
+        .hero-stats {
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 50%, var(--secondary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        /* Buttons */
+        .btn-primary {
+            position: relative;
+            background: linear-gradient(135deg, var(--secondary) 0%, #b01f31 100%);
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: white;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(215, 38, 61, 0.35);
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #b01f31 0%, var(--secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(215, 38, 61, 0.45);
+        }
+        
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-secondary {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-4px);
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+        }
+        
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* Section Styling */
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(215, 38, 61, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 1px solid rgba(215, 38, 61, 0.15);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Offers Grid - Equal Heights */
+        .offers-grid {
+            display: grid;
+            gap: 32px;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: stretch;
+        }
+        
+        @media (max-width: 1024px) {
+            .offers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .offers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Offer Cards - Premium Design */
+        .offer-card-premium {
+            position: relative;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .offer-card-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .offer-card-premium:hover {
+            transform: translateY(-16px);
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.15);
+        }
+        
+        .offer-card-premium:hover::before {
+            opacity: 1;
+        }
+        
+        .offer-image {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+        }
+        
+        .offer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .offer-card-premium:hover .offer-image img {
+            transform: scale(1.1);
+        }
+        
+        .offer-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
+        }
+        
+        .offer-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 18px;
+            background: white;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--charcoal);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .offer-tagline {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .offer-body {
+            padding: 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .offer-body .space-y-3 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .offer-body .space-y-3 .tier-card:last-child {
+            margin-top: auto;
+        }
+        
+        .offer-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .offer-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: linear-gradient(135deg, rgba(215, 38, 61, 0.1), rgba(245, 158, 11, 0.1));
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--secondary);
+            white-space: nowrap;
+        }
+
+        /* Tier Cards */
+        .tier-card {
+            background: #f8f8f8;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 18px;
+            padding: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 180px;
+        }
+        
+        .tier-card .tier-features {
+            flex: 1;
+        }
+        
+        .tier-card .tier-btn {
+            margin-top: auto;
+        }
+        
+        .tier-card:hover {
+            background: #f5f5f5;
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .tier-card.featured {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2a2a2a 100%);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .tier-card.featured:hover {
+            background: linear-gradient(135deg, #1f1f1f 0%, var(--charcoal) 100%);
+            transform: translateX(8px) scale(1.02);
+        }
+        
+        .tier-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .tier-card.featured .tier-price {
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tier-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .tier-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .tier-card.featured .tier-features li {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .tier-features li i {
+            color: #10b981;
+            font-size: 0.85rem;
+        }
+        
+        .tier-card.featured .tier-features li i {
+            color: var(--accent);
+        }
+        
+        .tier-btn {
+            width: 100%;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+        
+        .tier-btn-primary {
+            background: linear-gradient(135deg, var(--secondary), #b01f31);
+            color: white;
+            box-shadow: 0 8px 24px rgba(215, 38, 61, 0.3);
+        }
+        
+        .tier-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(215, 38, 61, 0.4);
+        }
+        
+        .tier-btn-light {
+            background: white;
+            color: var(--charcoal);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tier-btn-light:hover {
+            background: #f8f8f8;
+            transform: translateY(-2px);
+        }
+
+        /* Portfolio Gallery */
+        .gallery-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.18);
+        }
+        
+        .gallery-image {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gallery-card:hover .gallery-image img {
+            transform: scale(1.15);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.85) 100%);
+            opacity: 0.8;
+            transition: opacity 0.4s ease;
+        }
+        
+        .gallery-card:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 28px;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gallery-card:hover .gallery-content {
+            transform: translateY(0);
+        }
+        
+        .gallery-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+        }
+        
+        .gallery-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+        
+        .gallery-location {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .gallery-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal);
+            font-size: 1.5rem;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-card:hover .gallery-icon {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Contact Section */
+        .contact-card {
+            background: white;
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+        
+        .contact-item:hover {
+            background: #f0f0f0;
+            transform: translateX(8px);
+        }
+        
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--secondary), #b01f31);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .social-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            background: var(--charcoal);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Modal */
+        .modal {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.25);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modal:not(.hidden) .modal-content {
+            transform: scale(1);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary), var(--accent), transparent);
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .offer-card-premium {
+                margin-bottom: 24px;
+            }
+            
+            .gallery-image {
+                height: 260px;
+            }
+            
+            .contact-card {
+                padding: 28px;
+            }
+        }
+
+        /* Particle effect for hero */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 20s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
     </style>
 </head>
 <body class="text-gray-800">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
     <!-- Header & Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50">
-        <div class="glass container mx-auto px-4 py-4 mt-3 rounded-2xl flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="brand-logo mr-3">YS</div>
-                <h1 class="text-2xl font-bold">Youcef <span class="text-red-600">Studio</span></h1>
-            </div>
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+        <nav class="glass-nav container mx-auto px-6 py-4 rounded-2xl flex justify-between items-center">
+            <a href="#accueil" class="flex items-center gap-3 group">
+                <div class="brand-logo">
+                    <span>YS</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold font-display tracking-tight">Youcef <span class="gradient-text">Studio</span></h1>
+                    <p class="text-xs text-gray-500 font-medium">Photographe & Vidéaste</p>
+                </div>
+            </a>
             
-            <nav class="hidden md:block">
-                <ul class="flex space-x-8 text-sm font-semibold">
-                    <li><a href="#accueil" class="nav-link hover:text-red-600">Accueil</a></li>
-                    <li><a href="#offres" class="nav-link hover:text-red-600">Offres</a></li>
-                    <li><a href="#portfolio" class="nav-link hover:text-red-600">Portfolio</a></li>
-                    <li><a href="#contact" class="nav-link hover:text-red-600">Contact</a></li>
-                </ul>
+            <nav class="hidden lg:flex items-center gap-10">
+                <a href="#accueil" class="nav-link text-sm font-medium text-gray-700">Accueil</a>
+                <a href="#offres" class="nav-link text-sm font-medium text-gray-700">Offres</a>
+                <a href="#portfolio" class="nav-link text-sm font-medium text-gray-700">Portfolio</a>
+                <a href="#contact" class="nav-link text-sm font-medium text-gray-700">Contact</a>
             </nav>
             
-            <button id="mobile-menu-btn" class="md:hidden text-2xl">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
+            <div class="flex items-center gap-4">
+                <a href="#contact" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-charcoal text-white text-sm font-semibold rounded-xl hover:bg-black transition-all duration-300">
+                    <i class="fas fa-envelope"></i>
+                    Me contacter
+                </a>
+                <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors">
+                    <i class="fas fa-bars text-gray-700"></i>
+                </button>
+            </div>
+        </nav>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg mt-2 mx-4 rounded-xl">
-            <ul class="flex flex-col p-4 space-y-4">
-                <li><a href="#accueil" class="block py-2 hover:text-red-600 font-medium">Accueil</a></li>
-                <li><a href="#offres" class="block py-2 hover:text-red-600 font-medium">Offres</a></li>
-                <li><a href="#portfolio" class="block py-2 hover:text-red-600 font-medium">Portfolio</a></li>
-                <li><a href="#contact" class="block py-2 hover:text-red-600 font-medium">Contact</a></li>
-            </ul>
+        <div id="mobile-menu" class="lg:hidden hidden mt-3">
+            <div class="glass-nav rounded-2xl p-6">
+                <nav class="flex flex-col gap-4">
+                    <a href="#accueil" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-home text-secondary w-5"></i>
+                        Accueil
+                    </a>
+                    <a href="#offres" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-tag text-secondary w-5"></i>
+                        Offres
+                    </a>
+                    <a href="#portfolio" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-images text-secondary w-5"></i>
+                        Portfolio
+                    </a>
+                    <a href="#contact" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100 transition-colors font-medium">
+                        <i class="fas fa-envelope text-secondary w-5"></i>
+                        Contact
+                    </a>
+                </nav>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="accueil" class="hero-bg text-white pt-36 pb-24 md:pt-44 md:pb-32 relative">
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm backdrop-blur mb-6">
-                <i class="fas fa-camera-retro text-amber-300"></i>
-                Shooting | Événement | Pub
-            </div>
-            <h2 class="text-4xl md:text-6xl font-bold mb-4 leading-tight animate-fade-in">Capturer l'essentiel<br class="hidden md:block"/> avec un regard signature</h2>
-            <p class="text-lg md:text-2xl mb-10 max-w-3xl mx-auto text-gray-100 animate-fade-in animate-delay-1">
-                Photographe & vidéaste professionnel pour vos soutenances, événements et campagnes publicitaires en Algérie.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in animate-delay-2">
-                <a href="#offres" class="btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg">Voir les offres</a>
-                <a href="#contact" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-lg transition">
-                    <i class="fas fa-phone"></i> Parler du projet
-                </a>
-            </div>
-            <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto text-sm">
-                <div class="glass rounded-xl p-4 flex items-center gap-4">
-                    <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-red-600 to-amber-500 flex items-center justify-center text-white text-xl shadow">
-                        <i class="fas fa-flag-checkered"></i>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-amber-300">250+</div>
-                        <div class="text-gray-800 font-semibold">Soutenances et événements</div>
-                        <div class="text-gray-500 text-xs">Couverture complète et encadrée</div>
-                    </div>
+    <section id="accueil" class="hero-section">
+        <div class="hero-bg-image">
+            <img src="evenement4.jpg" alt="Youcef Studio">
+            <div class="hero-orb orb-1"></div>
+            <div class="hero-orb orb-2"></div>
+            <div class="particles" id="particles"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10 pt-32 pb-20">
+            <div class="max-w-4xl mx-auto text-center text-white">
+                <div class="hero-badge mb-8">
+                    <i class="fas fa-camera-retro"></i>
+                    <span>Shooting • Événement • Publicité</span>
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                 </div>
-                <div class="glass rounded-xl p-4 flex items-center gap-4">
-                    <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-300 flex items-center justify-center text-white text-xl shadow">
-                        <i class="fas fa-camera-retro"></i>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-amber-300">4K </div>
-                        <div class="text-gray-800 font-semibold">Qualité maîtrisée</div>
-                        <div class="text-gray-500 text-xs">Photo & vidéo calibrées</div>
-                    </div>
+                
+                <h2 class="hero-title text-5xl md:text-7xl font-bold font-display mb-6 leading-tight">
+                    Capturer l'essentiel<br>
+                    <span class="gradient-text">avec un regard signature</span>
+                </h2>
+                
+                <p class="hero-subtitle text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Photographe & vidéaste professionnel pour vos événements, mariages et campagnes publicitaires. Basé en Algérie, je transforme vos moments en souvenirs éternels.
+                </p>
+                
+                <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+                    <a href="#offres" class="btn-primary">
+                        <span class="flex items-center gap-2">
+                            <i class="fas fa-sparkles"></i>
+                            Découvrir les offres
+                        </span>
+                    </a>
+                    <a href="#contact" class="btn-secondary flex items-center gap-2">
+                        <i class="fas fa-play-circle"></i>
+                        Parler du projet
+                    </a>
                 </div>
-                <div class="glass rounded-xl p-4 flex items-center gap-4">
-                    <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center text-white text-xl shadow">
-                        <i class="fas fa-bolt"></i>
+                
+                <div class="hero-stats grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                    <div class="stat-card flex items-center gap-4">
+                        <div class="stat-icon bg-gradient-to-br from-red-500 to-red-600">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-3xl font-bold font-modern gradient-text">250+</div>
+                            <div class="text-gray-800 font-semibold text-sm">Événements couverts</div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="text-2xl font-bold text-amber-300">48h</div>
-                        <div class="text-gray-800 font-semibold">Livraison rapide</div>
-                        <div class="text-gray-500 text-xs">Option express disponible</div>
+                    <div class="stat-card flex items-center gap-4">
+                        <div class="stat-icon bg-gradient-to-br from-amber-500 to-orange-500">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-3xl font-bold font-modern gradient-text">4K</div>
+                            <div class="text-gray-800 font-semibold text-sm">Qualité cinématique</div>
+                        </div>
+                    </div>
+                    <div class="stat-card flex items-center gap-4">
+                        <div class="stat-icon bg-gradient-to-br from-emerald-500 to-teal-500">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-3xl font-bold font-modern gradient-text">48h</div>
+                            <div class="text-gray-800 font-semibold text-sm">Livraison express</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <a href="#offres" class="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors">
+                <span class="text-xs font-medium tracking-wider uppercase">Défiler</span>
+                <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+                    <div class="w-1.5 h-1.5 bg-white rounded-full animate-bounce"></div>
+                </div>
+            </a>
+        </div>
     </section>
 
     <!-- Offers Section -->
-    <section id="offres" class="py-16 bg-white relative">
+    <section id="offres" class="py-24 relative">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <p class="pill mb-4 inline-flex">Tarifs clairs en DA</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Mes Offres</h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto">
-                    Des forfaits adaptés à vos besoins pour les soutenances, les événements et la publicité.
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="section-badge">
+                    <i class="fas fa-tag"></i>
+                    Tarifs transparents en DA
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold font-display section-title mb-6">Mes Offres</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg mt-8">
+                    Des forfaits adaptés à chaque besoin, du petit événement intime aux grandes célébrations.
                 </p>
             </div>
             
-            <div class="grid gap-10 md:grid-cols-3">
-                <!-- Soutenance -->
-                <article class="offer-slab animate-fade-in">
-                    <div class="offer-visual" style="background-image: url('https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80');">
-                        <span class="badge pill bg-white/90 text-gray-900 shadow">Soutenance</span>
-                        <div class="tagline">Pitch final • Jury • Livrables rapides</div>
+            <div class="offers-grid">
+                <!-- Petit événement -->
+                <article class="offer-card-premium animate-on-scroll stagger-1">
+                    <div class="offer-image">
+                        <img src="petit%20evenemnt(soutnance)%20.JPG" alt="Petit événement">
+                        <div class="offer-image-overlay"></div>
+                        <span class="offer-badge">
+                            <i class="fas fa-heart text-red-500 mr-1"></i>
+                            Petit événement
+                        </span>
+                        <div class="offer-tagline">Anniversaire • Baby shower • Team building</div>
                     </div>
                     <div class="offer-body">
-                        <div class="offer-heading">
+                        <div class="offer-header">
                             <div>
-                                <h3 class="text-2xl font-bold text-gray-900">Soutenance</h3>
-                                <p class="text-gray-600 text-sm">Photo, vidéo et pack premium pour défendre votre projet.</p>
+                                <h3 class="text-2xl font-bold font-display text-charcoal mb-2">Petit événement</h3>
+                                <p class="text-gray-500 text-sm">Photo, vidéo et pack premium pour célébrer vos moments intimes.</p>
                             </div>
-                            <span class="tag"><i class="fa-solid fa-flag-checkered"></i> Série Pro</span>
+                            <span class="offer-tag">
+                                <i class="fas fa-star"></i>
+                                Populaire
+                            </span>
                         </div>
-                        <div class="tier-grid">
-                            <div class="tier">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg">Photo</div>
-                                    <span class="price text-red-600">7 000 DA</span>
+                        
+                        <div class="space-y-3">
+                            <div class="tier-card">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern">📷 Photo</div>
+                                    <span class="tier-price">7 000 DA</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>50 photos retouchées HD</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Portraits individuels + jury</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Transfert dans les 48h</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>50 photos retouchées HD</li>
+                                    <li><i class="fas fa-check-circle"></i>Portraits & photos de groupe</li>
+                                    <li><i class="fas fa-check-circle"></i>Transfert sous 48h</li>
                                 </ul>
-                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Photo 50 (7 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-primary book-btn" data-offer="Petit événement - Photo 50 (7 000 DA)">
+                                    Réserver
+                                </button>
                             </div>
-                            <div class="tier">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg">Video 4K</div>
-                                    <span class="price text-red-600">15 000 DA</span>
+                            
+                            <div class="tier-card">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern">🎬 Vidéo 4K</div>
+                                    <span class="tier-price">15 000 DA</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Capture multi-angles</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Montage clean + titres</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Export 4K + lien privé</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>Capture multi-angles</li>
+                                    <li><i class="fas fa-check-circle"></i>Montage clean + titres</li>
+                                    <li><i class="fas fa-check-circle"></i>Export 4K + lien privé</li>
                                 </ul>
-                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Video 4K (15 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-primary book-btn" data-offer="Petit événement - Video 4K (15 000 DA)">
+                                    Réserver
+                                </button>
                             </div>
-                            <div class="tier highlight">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-star text-amber-400"></i>Pack complet</div>
-                                    <span class="price">18 000 DA</span>
+                            
+                            <div class="tier-card featured">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern flex items-center gap-2">
+                                        <i class="fas fa-crown text-amber-400"></i>
+                                        Pack complet
+                                    </div>
+                                    <span class="tier-price">18 000 DA</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Photo + Vidéo 4K</span></li>
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>20 tirages premium</span></li>
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Livraison + teaser court</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>Photo + Vidéo 4K combinées</li>
+                                    <li><i class="fas fa-check-circle"></i>20 tirages premium</li>
+                                    <li><i class="fas fa-check-circle"></i>Teaser court inclus</li>
                                 </ul>
-                                <button class="bg-white text-gray-900 font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Soutenance - Pack Complet (18 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-light book-btn" data-offer="Petit événement - Pack Complet (18 000 DA)">
+                                    Réserver
+                                </button>
                             </div>
                         </div>
                     </div>
                 </article>
 
                 <!-- Événement -->
-                <article class="offer-slab animate-fade-in animate-delay-1">
-                    <div class="offer-visual" style="background-image: url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80');">
-                        <span class="badge pill bg-white/90 text-gray-900 shadow">Événement</span>
-                        <div class="tagline">Concerts • Mariages • Galas</div>
+                <article class="offer-card-premium animate-on-scroll stagger-2">
+                    <div class="offer-image">
+                        <img src="evenement41.jpg" alt="Événement">
+                        <div class="offer-image-overlay"></div>
+                        <span class="offer-badge">
+                            <i class="fas fa-bolt text-amber-500 mr-1"></i>
+                            Événement
+                        </span>
+                        <div class="offer-tagline">Concerts • Mariages • Galas</div>
                     </div>
                     <div class="offer-body">
-                        <div class="offer-heading">
+                        <div class="offer-header">
                             <div>
-                                <h3 class="text-2xl font-bold text-gray-900">Événement</h3>
-                                <p class="text-gray-600 text-sm">Couverture immersive pour vos moments forts.</p>
+                                <h3 class="text-2xl font-bold font-display text-charcoal mb-2">Événement</h3>
+                                <p class="text-gray-500 text-sm">Couverture immersive pour vos moments forts Avec des Shoots professionnel</p>
+                                
                             </div>
-                            <span class="tag"><i class="fa-solid fa-bolt"></i> Live</span>
+                            <span class="offer-tag">
+                                <i class="fas fa-fire"></i>
+                                Live
+                            </span>
                         </div>
-                        <div class="tier-grid">
-                            <div class="tier">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg">Photo</div>
-                                    <span class="price text-red-600">25 000 DA</span>
+                        
+                        <div class="space-y-3">
+                            <div class="tier-card">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern">📷 Photo</div>
+                                    <span class="tier-price text-sm">Sur devis</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Reportage complet du jour J</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Galerie en ligne sécurisée</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Livraison sous 5 jours</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>Reportage complet du jour J</li>
+                                    <li><i class="fas fa-check-circle"></i>Galerie en ligne sécurisée</li>
+                                    <li><i class="fas fa-check-circle"></i>Livraison sous 5 jours</li>
                                 </ul>
-                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Photo (25 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-primary book-btn" data-offer="Événement - Photo (Sur devis)">
+                                    Demander un devis
+                                </button>
                             </div>
-                            <div class="tier">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg">Video 4K</div>
-                                    <span class="price text-red-600">35 000 DA</span>
+                            
+                            <div class="tier-card">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern">🎬 Vidéo 4K</div>
+                                    <span class="tier-price text-sm">Sur devis</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Stabilisation et audio clair</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Montage storytelling</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Version courte réseaux sociaux</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>Stabilisation & audio clair</li>
+                                    <li><i class="fas fa-check-circle"></i>Montage storytelling</li>
+                                    <li><i class="fas fa-check-circle"></i>Version réseaux sociaux</li>
                                 </ul>
-                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Video 4K avec montage (35 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-primary book-btn" data-offer="Événement - Vidéo 4K (Sur devis)">
+                                    Demander un devis
+                                </button>
                             </div>
-                            <div class="tier highlight">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-crown text-amber-400"></i>Pack Photo+Video</div>
-                                    <span class="price">50 000 DA</span>
+                            
+                            <div class="tier-card featured">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern flex items-center gap-2">
+                                        <i class="fas fa-gem text-amber-400"></i>
+                                        Pack Photo+Vidéo
+                                    </div>
+                                    <span class="tier-price text-sm">Sur devis</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Équipe photo + vidéo dédiée</span></li>
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Montage long + highlights</span></li>
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Remise sur impressions</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>Équipe photo + vidéo dédiée</li>
+                                    <li><i class="fas fa-check-circle"></i>Montage long + highlights</li>
+                                    <li><i class="fas fa-check-circle"></i>Remise sur impressions</li>
                                 </ul>
-                                <button class="bg-white text-gray-900 font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Événement - Pack Photo+Video (50 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-light book-btn" data-offer="Événement - Pack Photo+Vidéo (Sur devis)">
+                                    Demander un devis
+                                </button>
                             </div>
                         </div>
                     </div>
                 </article>
 
                 <!-- Publicité -->
-                <article class="offer-slab animate-fade-in animate-delay-2">
-                    <div class="offer-visual" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80');">
-                        <span class="badge pill bg-white/90 text-gray-900 shadow">Publicité</span>
-                        <div class="tagline">Produits • Marque • Digital</div>
+                <article class="offer-card-premium animate-on-scroll stagger-3">
+                    <div class="offer-image">
+                        <img src="commerce11.JPG" alt="Publicité">
+                        <div class="offer-image-overlay"></div>
+                        <span class="offer-badge">
+                            <i class="fas fa-bullhorn text-purple-500 mr-1"></i>
+                            Publicité
+                        </span>
+                        <div class="offer-tagline">Produits • Marque • Digital</div>
                     </div>
                     <div class="offer-body">
-                        <div class="offer-heading">
+                        <div class="offer-header">
                             <div>
-                                <h3 class="text-2xl font-bold text-gray-900">Publicité</h3>
-                                <p class="text-gray-600 text-sm">Assets visuels percutants pour vos campagnes.</p>
+                                <h3 class="text-2xl font-bold font-display text-charcoal mb-2">Publicité</h3>
+                                <p class="text-gray-500 text-sm">Assets visuels percutants pour vos campagnes.</p>
                             </div>
-                            <span class="tag"><i class="fa-solid fa-bullhorn"></i> Impact</span>
+                            <span class="offer-tag">
+                                <i class="fas fa-rocket"></i>
+                                Impact
+                            </span>
                         </div>
-                        <div class="tier-grid">
-                            <div class="tier">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg">Photo</div>
-                                    <span class="price text-red-600">7 000 DA</span>
+                        
+                        <div class="space-y-3">
+                            <div class="tier-card">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern">📷 Photo</div>
+                                    <span class="tier-price text-sm">Sur devis</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Packshot + ambiance</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Retouches colorimétriques</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Livrables web & print</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>Packshot + ambiance</li>
+                                    <li><i class="fas fa-check-circle"></i>Retouches colorimétriques</li>
+                                    <li><i class="fas fa-check-circle"></i>Livrables web & print</li>
                                 </ul>
-                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Photo (7 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-primary book-btn" data-offer="Publicité - Photo (Sur devis)">
+                                    Demander un devis
+                                </button>
                             </div>
-                            <div class="tier">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg">Video 4K</div>
-                                    <span class="price text-red-600">25 000 DA</span>
+                            
+                            <div class="tier-card">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern">🎬 Vidéo 4K</div>
+                                    <span class="tier-price text-sm">Sur devis</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Storyboard + tournage</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Motion titles & sound design</span></li>
-                                    <li><i class="fa-solid fa-check text-emerald-500"></i><span>Formats courts réseaux</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>Storyboard + tournage</li>
+                                    <li><i class="fas fa-check-circle"></i>Motion titles & sound</li>
+                                    <li><i class="fas fa-check-circle"></i>Formats réseaux sociaux</li>
                                 </ul>
-                                <button class="btn-primary text-white font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Video 4K avec montage (25 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-primary book-btn" data-offer="Publicité - Vidéo 4K (Sur devis)">
+                                    Demander un devis
+                                </button>
                             </div>
-                            <div class="tier highlight">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="font-bold text-lg flex items-center gap-2"><i class="fa-solid fa-gem text-amber-400"></i>Pack Photo+Video</div>
-                                    <span class="price">30 000 DA</span>
+                            
+                            <div class="tier-card featured">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="font-bold text-lg font-modern flex items-center gap-2">
+                                        <i class="fas fa-trophy text-amber-400"></i>
+                                        Pack Photo+Vidéo
+                                    </div>
+                                    <span class="tier-price text-sm">Sur devis</span>
                                 </div>
-                                <ul class="tier-list space-y-1 mb-4">
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Concept + DA unifiée</span></li>
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Photo + vidéo synchronisées</span></li>
-                                    <li><i class="fa-solid fa-check text-amber-300"></i><span>Kits prêts pour ads</span></li>
+                                <ul class="tier-features mb-4">
+                                    <li><i class="fas fa-check-circle"></i>Concept + DA unifiée</li>
+                                    <li><i class="fas fa-check-circle"></i>Photo + vidéo synchronisées</li>
+                                    <li><i class="fas fa-check-circle"></i>Kits prêts pour ads</li>
                                 </ul>
-                                <button class="bg-white text-gray-900 font-bold py-3 px-6 rounded-lg w-full book-btn" data-offer="Publicité - Pack Photo+Video (30 000 DA)">Réserver</button>
+                                <button class="tier-btn tier-btn-light book-btn" data-offer="Publicité - Pack Photo+Vidéo (Sur devis)">
+                                    Demander un devis
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -571,50 +1411,111 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Mon Portfolio</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-                Découvrez quelques-unes de mes réalisations
-            </p>
+    <section id="portfolio" class="py-24 bg-white relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-red-500/5 to-amber-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-amber-500/5 to-red-500/5 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="section-badge">
+                    <i class="fas fa-images"></i>
+                    Réalisations
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold font-display section-title mb-6">Mon Portfolio</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg mt-8">
+                    Découvrez quelques-unes de mes réalisations les plus marquantes.
+                </p>
+            </div>
             
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="gallery-item bg-white shadow-sm">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" 
-                             alt="Soutenance" class="w-full h-64 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-3 left-3 bg-white/90 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">Soutenance</span>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="gallery-card animate-on-scroll stagger-1">
+                    <div class="gallery-image">
+                        <img src="soutnance.JPG" alt="Soutenance">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-icon">
+                            <i class="fas fa-expand"></i>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h4 class="font-bold">Soutenance universitaire</h4>
-                        <p class="text-gray-600 text-sm">Université d'Alger</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item bg-white shadow-sm">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" 
-                             alt="Événement" class="w-full h-64 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-3 left-3 bg-white/90 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">Événement</span>
-                    </div>
-                    <div class="p-4">
-                        <h4 class="font-bold">Mariage traditionnel</h4>
-                        <p class="text-gray-600 text-sm">Alger Centre</p>
+                    <div class="gallery-content">
+                        <span class="gallery-category">Soutenance</span>
+                        <h4 class="gallery-title font-display">Jour de diplôme</h4>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt mr-2"></i>Université</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item bg-white shadow-sm">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1462826303086-329426d1aef5?auto=format&fit=crop&w=800&q=80" 
-                             alt="Publicité" class="w-full h-64 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-3 left-3 bg-white/90 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">Publicité</span>
+                <div class="gallery-card animate-on-scroll stagger-2">
+                    <div class="gallery-image">
+                        <img src="evenement4.jpg" alt="Événement">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-icon">
+                            <i class="fas fa-expand"></i>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h4 class="font-bold">Campagne publicitaire</h4>
-                        <p class="text-gray-600 text-sm">Entreprise locale</p>
+                    <div class="gallery-content">
+                        <span class="gallery-category">Événement</span>
+                        <h4 class="gallery-title font-display">Mariage traditionnel</h4>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt mr-2"></i>Alger Centre</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-card animate-on-scroll stagger-3">
+                    <div class="gallery-image">
+                        <img src="commerce12.JPG" alt="Commerce">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-icon">
+                            <i class="fas fa-expand"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-category">Publicité</span>
+                        <h4 class="gallery-title font-display">Campagne publicitaire</h4>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt mr-2"></i>Entreprise locale</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-card animate-on-scroll stagger-1">
+                    <div class="gallery-image">
+                        <img src="portrait.jpg" alt="Portrait">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-icon">
+                            <i class="fas fa-expand"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-category">Portrait</span>
+                        <h4 class="gallery-title font-display">Shooting portrait</h4>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt mr-2"></i>Studio</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-card animate-on-scroll stagger-2">
+                    <div class="gallery-image">
+                        <img src="evenement41.jpg" alt="Événement">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-icon">
+                            <i class="fas fa-expand"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-category">Événement</span>
+                        <h4 class="gallery-title font-display">Soirée spéciale</h4>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt mr-2"></i>Tlemcen</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-card animate-on-scroll stagger-3">
+                    <div class="gallery-image">
+                        <img src="petit%20evenemnt(soutnance)%20.JPG" alt="Soutenance">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-icon">
+                            <i class="fas fa-expand"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-content">
+                        <span class="gallery-category">Soutenance</span>
+                        <h4 class="gallery-title font-display">Jour de diplôme</h4>
+                        <p class="gallery-location"><i class="fas fa-map-marker-alt mr-2"></i>Studio</p>
                     </div>
                 </div>
             </div>
@@ -622,57 +1523,71 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
+    <section id="contact" class="py-24 relative">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Contactez-moi</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-                Pour toute question ou réservation, n'hésitez pas à me contacter
-            </p>
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="section-badge">
+                    <i class="fas fa-envelope"></i>
+                    Contact
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold font-display section-title mb-6">Contactez-moi</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg mt-8">
+                    Pour toute question ou réservation, n'hésitez pas à me contacter.
+                </p>
+            </div>
             
-            <div class="max-w-3xl mx-auto">
-                <div class="glass rounded-2xl p-8">
-                    <h3 class="text-2xl font-bold mb-6">Informations de contact</h3>
+            <div class="max-w-xl mx-auto animate-on-scroll">
+                <div class="contact-card">
+                    <h3 class="text-2xl font-bold font-display mb-8">Informations de contact</h3>
                     
-                    <div class="flex items-start mb-6">
-                        <div class="bg-red-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-phone text-red-600"></i>
+                    <a href="tel:+213550686208" class="contact-item group">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold">Téléphone</h4>
-                            <p class="text-gray-600">+213 XXX XX XX XX</p>
+                            <p class="text-sm text-gray-500 mb-1">Téléphone</p>
+                            <p class="font-bold text-charcoal group-hover:text-secondary transition-colors">+213 0550 68 62 08</p>
+                        </div>
+                        <i class="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-secondary transition-colors"></i>
+                    </a>
+                    
+                    <a href="mailto:youceftraivail@gmail.com" class="contact-item group">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Email</p>
+                            <p class="font-bold text-charcoal group-hover:text-secondary transition-colors">youceftraivail@gmail.com</p>
+                        </div>
+                        <i class="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-secondary transition-colors"></i>
+                    </a>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Localisation</p>
+                            <p class="font-bold text-charcoal">Oran, Tlemcen, Algérie</p>
                         </div>
                     </div>
                     
-                    <div class="flex items-start mb-6">
-                        <div class="bg-red-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-envelope text-red-600"></i>
+                    <div class="mt-8 pt-8 border-t border-gray-100">
+                        <p class="text-sm text-gray-500 mb-4">Retrouvez-moi sur</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="social-btn" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://wa.me/213550686208" class="social-btn" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="social-btn" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
                         </div>
-                        <div>
-                            <h4 class="font-bold">Email</h4>
-                            <p class="text-gray-600">cherifi.youssouf@example.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start mb-6">
-                        <div class="bg-red-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-map-marker-alt text-red-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Localisation</h4>
-                            <p class="text-gray-600">Alger, Algérie</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex space-x-4 mt-8">
-                        <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full">
-                            <i class="fab fa-facebook-f text-gray-700"></i>
-                        </a>
-                        <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full">
-                            <i class="fab fa-instagram text-gray-700"></i>
-                        </a>
-                        <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-full">
-                            <i class="fab fa-whatsapp text-gray-700"></i>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -680,66 +1595,144 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2026 Youcef Studio. Tous droits réservés.</p>
-            <p class="mt-2 text-gray-400">Photographe & Vidéaste Professionnel - Alger, Algérie</p>
+    <footer class="footer py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="brand-logo">
+                        <span>YS</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold font-display">Youcef Studio</h3>
+                        <p class="text-gray-400 text-sm">Photographe & Vidéaste</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <a href="#accueil" class="text-gray-400 hover:text-white transition-colors text-sm">Accueil</a>
+                    <a href="#offres" class="text-gray-400 hover:text-white transition-colors text-sm">Offres</a>
+                    <a href="#portfolio" class="text-gray-400 hover:text-white transition-colors text-sm">Portfolio</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors text-sm">Contact</a>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 text-sm">&copy; 2026 Youcef Studio. Tous droits réservés.</p>
+                    <p class="text-gray-500 text-xs mt-1">Oran, Tlemcen, Algérie</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Booking Modal (info-only) -->
-    <div id="booking-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Contactez-moi pour réserver</h3>
-                <button id="close-modal" class="text-2xl text-gray-500 hover:text-gray-800">&times;</button>
-            </div>
-
-            <div class="mb-4">
-                <p class="text-gray-700 font-semibold mb-2">Offre sélectionnée</p>
-                <div id="offer-display" class="p-3 bg-gray-100 rounded-lg font-bold text-red-600"></div>
-            </div>
-
-            <div class="space-y-4">
-                <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border">
-                    <span class="text-red-600 text-xl"><i class="fas fa-phone"></i></span>
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 hidden p-4">
+        <div class="modal-content max-w-md w-full">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
                     <div>
-                        <p class="text-sm text-gray-600">Téléphone</p>
-                        <a id="contact-phone" href="tel:+213550686208" class="text-lg font-bold text-gray-900">0550 68 62 08</a>
+                        <h3 class="text-2xl font-bold font-display">Réserver</h3>
+                        <p class="text-gray-500 text-sm">Contactez-moi pour finaliser</p>
                     </div>
+                    <button id="close-modal" class="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                        <i class="fas fa-times text-gray-600"></i>
+                    </button>
                 </div>
-                <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 border">
-                    <span class="text-red-600 text-xl"><i class="fas fa-envelope"></i></span>
-                    <div>
-                        <p class="text-sm text-gray-600">Email</p>
-                        <a id="contact-email" href="mailto:youcef__studio_31@gmail.com" class="text-lg font-bold text-gray-900">youcef__studio_31@gmail.com</a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="mt-6 p-4 rounded-lg bg-gray-50 text-center text-gray-700">
-                Contactez-moi directement par téléphone ou email pour finaliser la réservation.
+                <div class="mb-6">
+                    <p class="text-sm text-gray-500 mb-2">Offre sélectionnée</p>
+                    <div id="offer-display" class="p-4 bg-gradient-to-r from-red-50 to-amber-50 rounded-xl font-bold text-charcoal border border-red-100"></div>
+                </div>
+
+                <div class="space-y-3 mb-6">
+                    <a href="tel:+213550686208" class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Téléphone</p>
+                            <p class="font-bold text-charcoal">0550 68 62 08</p>
+                        </div>
+                        <i class="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-secondary transition-colors"></i>
+                    </a>
+                    
+                    <a href="mailto:youceftraivail@gmail.com" class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Email</p>
+                            <p class="font-bold text-charcoal">youceftraivail@gmail.com</p>
+                        </div>
+                        <i class="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-secondary transition-colors"></i>
+                    </a>
+                    
+                    <a href="https://wa.me/213550686208" class="flex items-center gap-4 p-4 rounded-xl bg-green-50 hover:bg-green-100 transition-colors group">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">WhatsApp</p>
+                            <p class="font-bold text-charcoal">Envoyer un message</p>
+                        </div>
+                        <i class="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-green-600 transition-colors"></i>
+                    </a>
+                </div>
+
+                <div class="p-4 rounded-xl bg-gray-50 text-center">
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-info-circle text-secondary mr-2"></i>
+                        Contactez-moi directement pour finaliser la réservation.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        if (particlesContainer) {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
         
         // Close mobile menu when clicking a link
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
             });
         });
         
-        // Booking modal functionality (info-only)
+        // Navbar scroll effect
+        const navbar = document.querySelector('.glass-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Booking modal functionality
         const bookingModal = document.getElementById('booking-modal');
         const closeModalBtn = document.getElementById('close-modal');
         const offerDisplay = document.getElementById('offer-display');
@@ -753,19 +1746,26 @@
                 const offer = button.getAttribute('data-offer');
                 offerDisplay.textContent = offer;
                 bookingModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
             });
         });
         
         // Close modal function
         const closeBookingModal = () => {
             bookingModal.classList.add('hidden');
+            document.body.style.overflow = '';
         };
 
         closeModalBtn.addEventListener('click', closeBookingModal);
         
         // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
+        bookingModal.addEventListener('click', (e) => {
             if (e.target === bookingModal) closeBookingModal();
+        });
+        
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBookingModal();
         });
         
         // Smooth scrolling for anchor links
@@ -778,31 +1778,44 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
                 }
             });
         });
         
-        // Add animation on scroll
+        // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in');
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
         
         // Observe elements for animation
-        document.querySelectorAll('.offer-slab, .gallery-item').forEach(el => {
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
             observer.observe(el);
+        });
+        
+        // Gallery lightbox effect (simple version)
+        document.querySelectorAll('.gallery-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                // Could implement a full lightbox here
+                console.log('Clicked gallery item:', img.alt);
+            });
         });
     </script>
 </body>
